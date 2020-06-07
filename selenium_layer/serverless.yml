@@ -1,0 +1,31 @@
+service: selenium-layer
+
+provider:
+  name: aws
+  runtime: python3.7
+  region: ap-northeast-2
+
+layers:
+  selenium:
+    path: selenium
+    CompatibleRuntimes: [
+      "python3.7"
+    ]
+  chromedriver:
+    path: chromedriver
+    description: chrome driver layer
+    CompatibleRuntimes: [
+      "python3.7"
+    ]
+resources:
+  Outputs:
+    SeleniumLayerExport:
+      Value:
+        Ref: SeleniumLambdaLayer
+      Export:
+        Name: SeleniumLambdaLayer
+    ChromedriverLayerExport:
+      Value:
+        Ref: ChromedriverLambdaLayer
+      Export:
+        Name: ChromedriverLambdaLayer
